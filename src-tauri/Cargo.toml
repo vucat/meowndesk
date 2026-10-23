@@ -1,0 +1,36 @@
+[package]
+name = "meowndesk"
+version = "0.1.0"
+description = "Local Windows and Linux hardware monitor"
+edition = "2024"
+rust-version = "1.90"
+publish = false
+
+[lib]
+name = "meowndesk_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[features]
+test-fixtures = []
+
+[build-dependencies]
+tauri-build = { version = "=2.7.3", features = [] }
+
+[dependencies]
+tauri = { version = "=2.12.4", features = [] }
+sysinfo = "=0.33.1"
+nvml-wrapper = "=0.10.0"
+battery = "=0.7.8"
+tokio = { version = "=1.54.0", features = ["rt-multi-thread", "sync", "time", "macros"] }
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.154"
+uuid = { version = "=1.28.0", features = ["v4"] }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+windows = { version = "=0.62.2", features = ["Win32_Foundation", "Win32_System_SystemInformation", "Win32_System_ProcessStatus", "Win32_System_Threading", "Win32_System_Performance", "Win32_Storage_FileSystem", "Win32_NetworkManagement_IpHelper", "Win32_NetworkManagement_Ndis", "Win32_Graphics_Dxgi", "Win32_Graphics_Dxgi_Common", "Wdk_Graphics_Direct3D", "Win32_Devices_DeviceAndDriverInstallation"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = "=0.2.191"
+
+[dev-dependencies]
+tauri = { version = "=2.12.4", features = ["test"] }

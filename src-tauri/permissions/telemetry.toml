@@ -1,0 +1,14 @@
+# The complete telemetry command set for the bundled main window.
+[[set]]
+identifier = "telemetry"
+description = "Grants only the eight contracted telemetry commands."
+permissions = [
+  "allow-bootstrap",
+  "allow-subscribe-telemetry",
+  "allow-ack-telemetry",
+  "allow-unsubscribe-telemetry",
+  "allow-set-view",
+  "allow-set-paused",
+  "allow-set-preferences",
+  "allow-set-delivery-visibility",
+]

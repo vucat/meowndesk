@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+coverage/
+src-tauri/target/
+src-tauri/gen/
+artifacts/
+package-lock.json
+Cargo.lock
+src/assets/fonts/

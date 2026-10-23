@@ -1,0 +1,2 @@
+# Keep source and scripts consistent on Windows and Linux; auto preserves binaries.
+* text=auto eol=lf

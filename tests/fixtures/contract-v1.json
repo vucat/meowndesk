@@ -1,0 +1,5629 @@
+{
+  "description": "Shared version-1 telemetry contract fixture. Canonical bootstrap/view/delivery plus patch cases that both codec suites must reject.",
+  "bootstrap": {
+    "view": {
+      "contractVersion": 1,
+      "sessionId": "0f7a1c2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+      "revision": 7,
+      "mode": "live",
+      "visible": true,
+      "inspectionId": null,
+      "endpointElapsedMs": 63000,
+      "endpointAtMs": 1761091199000,
+      "sample": {
+        "sequence": 63,
+        "capturedAtMs": 1761091199000,
+        "elapsedMs": 63000,
+        "intervalMs": 1000,
+        "host": {
+          "sessionId": "0f7a1c2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+          "hostname": "alex-workstation",
+          "osName": "Ubuntu",
+          "osVersion": "24.04.1 LTS",
+          "cpuModel": "AMD Ryzen 7 5800X 8-Core Processor",
+          "logicalCpuCount": 16,
+          "environment": "native",
+          "uptimeSeconds": 128640,
+          "scopeLabel": "Alex-Workstation"
+        },
+        "scopes": [
+          {
+            "id": "host:alex-workstation",
+            "kind": "host",
+            "label": "Alex-Workstation",
+            "provider": "sysinfo",
+            "epoch": 1
+          },
+          {
+            "id": "cpu:package0",
+            "kind": "cpu_package",
+            "label": "CPU package",
+            "provider": "linux.proc",
+            "epoch": 1
+          },
+          {
+            "id": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "kind": "gpu",
+            "label": "NVIDIA GeForce RTX 3060",
+            "provider": "nvml",
+            "epoch": 4
+          },
+          {
+            "id": "volume:root",
+            "kind": "volume",
+            "label": "/ (ext4)",
+            "provider": "linux.disk",
+            "epoch": 1
+          },
+          {
+            "id": "network:aggregate",
+            "kind": "network_aggregate",
+            "label": "Interface traffic",
+            "provider": "linux.network",
+            "epoch": 2
+          },
+          {
+            "id": "battery:BAT0",
+            "kind": "battery",
+            "label": "BAT0",
+            "provider": "battery",
+            "epoch": 1
+          }
+        ],
+        "capabilities": [
+          {
+            "metricId": "cpu.totalPct",
+            "scopeId": "cpu:package0",
+            "unit": "pct",
+            "provider": "linux.proc",
+            "status": "valid",
+            "reason": null
+          },
+          {
+            "metricId": "memory.usedBytes",
+            "scopeId": "host:alex-workstation",
+            "unit": "bytes",
+            "provider": "sysinfo",
+            "status": "valid",
+            "reason": null
+          },
+          {
+            "metricId": "gpu.utilizationPct",
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "unit": "pct",
+            "provider": "nvml",
+            "status": "valid",
+            "reason": null
+          },
+          {
+            "metricId": "gpu.temperatureC",
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "unit": "celsius",
+            "provider": "nvml",
+            "status": "permission_denied",
+            "reason": "NVML temperature query denied"
+          },
+          {
+            "metricId": "network.receiveBytesPerSecond",
+            "scopeId": "network:aggregate",
+            "unit": "bytes_per_second",
+            "provider": "linux.network",
+            "status": "valid",
+            "reason": null
+          },
+          {
+            "metricId": "battery.chargePct",
+            "scopeId": "battery:BAT0",
+            "unit": "pct",
+            "provider": "battery",
+            "status": "valid",
+            "reason": null
+          }
+        ],
+        "cpu": {
+          "totalPct": {
+            "status": "valid",
+            "value": 42.5,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "cpu:package0",
+            "reason": null
+          },
+          "userPct": {
+            "status": "valid",
+            "value": 30.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "cpu:package0",
+            "reason": null
+          },
+          "systemPct": {
+            "status": "valid",
+            "value": 12.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "cpu:package0",
+            "reason": null
+          },
+          "temperatureC": {
+            "status": "unsupported",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "cpu:package0",
+            "reason": "Package temperature sensor not exposed"
+          }
+        },
+        "memory": {
+          "totalBytes": {
+            "status": "valid",
+            "value": "34359738368",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "host:alex-workstation",
+            "reason": null
+          },
+          "usedBytes": {
+            "status": "valid",
+            "value": "12025908429",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "host:alex-workstation",
+            "reason": null
+          },
+          "availableBytes": {
+            "status": "valid",
+            "value": "22333829939",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "host:alex-workstation",
+            "reason": null
+          },
+          "cachedBytes": {
+            "status": "stale",
+            "value": "4294967296",
+            "sampledAtMs": 1761091198000,
+            "elapsedMs": 62000,
+            "scopeId": "host:alex-workstation",
+            "reason": "No newer cache observation"
+          },
+          "usedPct": {
+            "status": "valid",
+            "value": 35,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "host:alex-workstation",
+            "reason": null
+          }
+        },
+        "gpu": {
+          "utilizationPct": {
+            "status": "valid",
+            "value": 76,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "vramTotalBytes": {
+            "status": "valid",
+            "value": "12884901888",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "vramUsedBytes": {
+            "status": "valid",
+            "value": "2147483648",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "vramFreeBytes": {
+            "status": "valid",
+            "value": "9663676416",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "vramReservedBytes": {
+            "status": "valid",
+            "value": "1073741824",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "temperatureC": {
+            "status": "permission_denied",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": "NVML temperature query denied"
+          },
+          "powerW": {
+            "status": "valid",
+            "value": 88.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "fanPct": {
+            "status": "stale",
+            "value": 41,
+            "sampledAtMs": 1761091190000,
+            "elapsedMs": 54000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": "No newer fan observation"
+          },
+          "powerLimitPct": {
+            "status": "valid",
+            "value": 100,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          }
+        },
+        "disk": {
+          "totalBytes": {
+            "status": "valid",
+            "value": "1000204886016",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          },
+          "freeBytes": {
+            "status": "valid",
+            "value": "412316860416",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          },
+          "readBytesPerSecond": {
+            "status": "unavailable",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "volume:root",
+            "reason": "Exact volume counters not matched"
+          },
+          "writeBytesPerSecond": {
+            "status": "valid",
+            "value": 2097152,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          },
+          "writtenSessionBytes": {
+            "status": "valid",
+            "value": "32212254720",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          }
+        },
+        "network": {
+          "receiveBytesPerSecond": {
+            "status": "valid",
+            "value": 1250000.5,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "network:aggregate",
+            "reason": null
+          },
+          "sendBytesPerSecond": {
+            "status": "valid",
+            "value": 88000.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "network:aggregate",
+            "reason": null
+          },
+          "receivedSessionBytes": {
+            "status": "valid",
+            "value": "91268055040",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "network:aggregate",
+            "reason": null
+          },
+          "sentSessionBytes": {
+            "status": "valid",
+            "value": "7340032000",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "network:aggregate",
+            "reason": null
+          }
+        },
+        "power": {
+          "primaryKind": "battery_pct",
+          "primaryValue": {
+            "status": "valid",
+            "value": 67,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "watts": {
+            "status": "valid",
+            "value": 9.75,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "cpuPackageW": {
+            "status": "unavailable",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "cpu:package0",
+            "reason": "CPU package power provider not available"
+          },
+          "gpuBoardW": {
+            "status": "valid",
+            "value": 88.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "gpuTemperatureC": {
+            "status": "permission_denied",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": "NVML temperature query denied"
+          },
+          "fanPct": {
+            "status": "stale",
+            "value": 41,
+            "sampledAtMs": 1761091190000,
+            "elapsedMs": 54000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": "No newer fan observation"
+          },
+          "powerLimitPct": {
+            "status": "valid",
+            "value": 100,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "batteryChargePct": {
+            "status": "valid",
+            "value": 67,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "batteryHealthPct": {
+            "status": "valid",
+            "value": 93.5,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "batteryRemainingSeconds": {
+            "status": "valid",
+            "value": 9000,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "batteryState": {
+            "status": "valid",
+            "value": "discharging",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          }
+        }
+      },
+      "processSummaries": {
+        "memoryTop": [
+          {
+            "key": "5150:1761089100",
+            "pid": 5150,
+            "name": "cödé — 開発環境",
+            "residentBytes": {
+              "status": "valid",
+              "value": "1048576000",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 22,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "unavailable",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "GPU attribution unavailable"
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          },
+          {
+            "key": "4242:1761089000",
+            "pid": 4242,
+            "name": "firefox",
+            "residentBytes": {
+              "status": "valid",
+              "value": "734003200",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 12.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "valid",
+              "value": 3.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": null
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          }
+        ],
+        "cpuTop": [
+          {
+            "key": "5150:1761089100",
+            "pid": 5150,
+            "name": "cödé — 開発環境",
+            "residentBytes": {
+              "status": "valid",
+              "value": "1048576000",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 22,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "unavailable",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "GPU attribution unavailable"
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          },
+          {
+            "key": "4242:1761089000",
+            "pid": 4242,
+            "name": "firefox",
+            "residentBytes": {
+              "status": "valid",
+              "value": "734003200",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 12.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "valid",
+              "value": 3.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": null
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          }
+        ],
+        "gpuTop": [
+          {
+            "key": "4242:1761089000",
+            "pid": 4242,
+            "name": "firefox",
+            "residentBytes": {
+              "status": "valid",
+              "value": "734003200",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 12.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "valid",
+              "value": 3.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": null
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          }
+        ],
+        "powerTop": [],
+        "supportedRankingMetrics": ["cpu", "gpu"],
+        "coverageNotes": ["GPU process attribution is unavailable for some processes"],
+        "displayedMemoryTotalBytes": "1782579200"
+      },
+      "memoryBreakdowns": {
+        "ram": {
+          "kind": "ram",
+          "scopeId": "host:alex-workstation",
+          "totalBytes": "34359738368",
+          "usedPct": 35,
+          "segments": [
+            {
+              "id": "in_use",
+              "label": "In Use",
+              "bytes": "12025908429",
+              "role": "used"
+            },
+            {
+              "id": "available",
+              "label": "Available",
+              "bytes": "22333829939",
+              "role": "available"
+            }
+          ],
+          "coverage": "complete",
+          "note": null
+        },
+        "vram": {
+          "kind": "vram",
+          "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+          "totalBytes": "12884901888",
+          "usedPct": 16.6666666667,
+          "segments": [
+            {
+              "id": "used",
+              "label": "Used",
+              "bytes": "2147483648",
+              "role": "used"
+            },
+            {
+              "id": "free",
+              "label": "Free",
+              "bytes": "9663676416",
+              "role": "free"
+            },
+            {
+              "id": "unclassified",
+              "label": "Unclassified",
+              "bytes": "1073741824",
+              "role": "unclassified"
+            }
+          ],
+          "coverage": "partial",
+          "note": "Some driver categories are not reported"
+        }
+      },
+      "history": {
+        "range": "1m",
+        "endpointElapsedMs": 63000,
+        "retainedFromElapsedMs": 0,
+        "charts": [
+          {
+            "seriesId": "cpuPct",
+            "unit": "pct",
+            "scopeId": "cpu:package0",
+            "scopeLabel": "CPU package",
+            "scaleMax": 100,
+            "columns": [
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "ramUsedPct",
+            "unit": "pct",
+            "scopeId": "host:alex-workstation",
+            "scopeLabel": "Alex-Workstation",
+            "scaleMax": 100,
+            "columns": [
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "gpuPct",
+            "unit": "pct",
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "scopeLabel": "NVIDIA GeForce RTX 3060",
+            "scaleMax": 100,
+            "columns": [
+              {
+                "value": 60,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 61,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 62,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 63,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 64,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 65,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 66,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 67,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 68,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 69,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 70,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 71,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 72,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 73,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 74,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 75,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 77,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 78,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 79,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 60,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 61,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 62,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 63,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 64,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 65,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 66,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 67,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 68,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 69,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 70,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 71,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 72,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 74,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 75,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 76,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 77,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 78,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 79,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 60,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 61,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 62,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 63,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 64,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 65,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 66,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 67,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 68,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 69,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 71,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 72,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 73,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 74,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 75,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 76,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 77,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 78,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 79,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "diskBytesPerSecond",
+            "unit": "bytes_per_second",
+            "scopeId": "volume:root",
+            "scopeLabel": "/ (ext4)",
+            "scaleMax": 5000000,
+            "columns": [
+              {
+                "value": 0,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 50000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 150000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 200000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 250000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 300000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 350000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 400000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 450000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 500000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 550000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 600000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 650000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 700000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 750000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 850000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 900000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 950000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1000000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1050000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1150000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1200000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1250000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1300000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1350000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1400000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1450000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1500000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1550000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1600000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 1700000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1750000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1800000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1850000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1900000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1950000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2000000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2050000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2150000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2200000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2250000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2300000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2350000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2400000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2450000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 2550000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2600000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2650000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2700000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2750000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2800000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2850000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2900000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2950000,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "networkBytesPerSecond",
+            "unit": "bytes_per_second",
+            "scopeId": "network:aggregate",
+            "scopeLabel": "Interface traffic",
+            "scaleMax": 2000000,
+            "columns": [
+              {
+                "value": 0,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 20000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 60000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 80000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 120000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 140000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 160000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 180000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 200000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 220000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 240000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 260000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 280000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 300000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 340000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 360000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 380000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 400000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 420000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 440000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 460000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 480000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 500000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 520000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 540000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 560000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 580000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 600000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 620000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 640000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 680000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 700000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 720000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 740000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 760000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 780000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 800000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 820000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 840000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 860000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 880000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 900000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 920000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 940000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 960000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 980000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 1020000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1040000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1060000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1080000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1120000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1140000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1160000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1180000,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "powerW",
+            "unit": "watts",
+            "scopeId": "battery:BAT0",
+            "scopeLabel": "BAT0",
+            "scaleMax": 20,
+            "columns": [
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          }
+        ],
+        "gpuSampleAveragePct": {
+          "status": "valid",
+          "value": 76,
+          "sampledAtMs": 1761091199000,
+          "elapsedMs": 63000,
+          "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+          "reason": null
+        },
+        "gpuSamplePeakPct": {
+          "status": "valid",
+          "value": 88.5,
+          "sampledAtMs": 1761091199000,
+          "elapsedMs": 63000,
+          "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+          "reason": null
+        }
+      },
+      "selection": {
+        "range": "1m",
+        "memoryView": "ram",
+        "rankingMetric": "cpu"
+      },
+      "preferences": {
+        "intervalMs": 1000,
+        "selectedGpuId": "GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5"
+      },
+      "notices": [
+        {
+          "code": "sensor_partial",
+          "message": "Disk read rate is unavailable for the system volume."
+        }
+      ]
+    },
+    "gpus": [
+      {
+        "id": "GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+        "name": "NVIDIA GeForce RTX 3060",
+        "vendor": "nvidia",
+        "kind": "discrete",
+        "available": true
+      },
+      {
+        "id": "0000:0e:00.0",
+        "name": "AMD Radeon 780M",
+        "vendor": "amd",
+        "kind": "integrated",
+        "available": false
+      }
+    ]
+  },
+  "delivery": {
+    "contractVersion": 1,
+    "sessionId": "0f7a1c2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+    "subscriptionId": "6b5c4d3e-2f1a-4b0c-9d8e-7f6a5b4c3d2e",
+    "deliverySequence": 3,
+    "view": {
+      "contractVersion": 1,
+      "sessionId": "0f7a1c2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+      "revision": 7,
+      "mode": "live",
+      "visible": true,
+      "inspectionId": null,
+      "endpointElapsedMs": 63000,
+      "endpointAtMs": 1761091199000,
+      "sample": {
+        "sequence": 63,
+        "capturedAtMs": 1761091199000,
+        "elapsedMs": 63000,
+        "intervalMs": 1000,
+        "host": {
+          "sessionId": "0f7a1c2e-3b4d-4e5f-8a9b-0c1d2e3f4a5b",
+          "hostname": "alex-workstation",
+          "osName": "Ubuntu",
+          "osVersion": "24.04.1 LTS",
+          "cpuModel": "AMD Ryzen 7 5800X 8-Core Processor",
+          "logicalCpuCount": 16,
+          "environment": "native",
+          "uptimeSeconds": 128640,
+          "scopeLabel": "Alex-Workstation"
+        },
+        "scopes": [
+          {
+            "id": "host:alex-workstation",
+            "kind": "host",
+            "label": "Alex-Workstation",
+            "provider": "sysinfo",
+            "epoch": 1
+          },
+          {
+            "id": "cpu:package0",
+            "kind": "cpu_package",
+            "label": "CPU package",
+            "provider": "linux.proc",
+            "epoch": 1
+          },
+          {
+            "id": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "kind": "gpu",
+            "label": "NVIDIA GeForce RTX 3060",
+            "provider": "nvml",
+            "epoch": 4
+          },
+          {
+            "id": "volume:root",
+            "kind": "volume",
+            "label": "/ (ext4)",
+            "provider": "linux.disk",
+            "epoch": 1
+          },
+          {
+            "id": "network:aggregate",
+            "kind": "network_aggregate",
+            "label": "Interface traffic",
+            "provider": "linux.network",
+            "epoch": 2
+          },
+          {
+            "id": "battery:BAT0",
+            "kind": "battery",
+            "label": "BAT0",
+            "provider": "battery",
+            "epoch": 1
+          }
+        ],
+        "capabilities": [
+          {
+            "metricId": "cpu.totalPct",
+            "scopeId": "cpu:package0",
+            "unit": "pct",
+            "provider": "linux.proc",
+            "status": "valid",
+            "reason": null
+          },
+          {
+            "metricId": "memory.usedBytes",
+            "scopeId": "host:alex-workstation",
+            "unit": "bytes",
+            "provider": "sysinfo",
+            "status": "valid",
+            "reason": null
+          },
+          {
+            "metricId": "gpu.utilizationPct",
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "unit": "pct",
+            "provider": "nvml",
+            "status": "valid",
+            "reason": null
+          },
+          {
+            "metricId": "gpu.temperatureC",
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "unit": "celsius",
+            "provider": "nvml",
+            "status": "permission_denied",
+            "reason": "NVML temperature query denied"
+          },
+          {
+            "metricId": "network.receiveBytesPerSecond",
+            "scopeId": "network:aggregate",
+            "unit": "bytes_per_second",
+            "provider": "linux.network",
+            "status": "valid",
+            "reason": null
+          },
+          {
+            "metricId": "battery.chargePct",
+            "scopeId": "battery:BAT0",
+            "unit": "pct",
+            "provider": "battery",
+            "status": "valid",
+            "reason": null
+          }
+        ],
+        "cpu": {
+          "totalPct": {
+            "status": "valid",
+            "value": 42.5,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "cpu:package0",
+            "reason": null
+          },
+          "userPct": {
+            "status": "valid",
+            "value": 30.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "cpu:package0",
+            "reason": null
+          },
+          "systemPct": {
+            "status": "valid",
+            "value": 12.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "cpu:package0",
+            "reason": null
+          },
+          "temperatureC": {
+            "status": "unsupported",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "cpu:package0",
+            "reason": "Package temperature sensor not exposed"
+          }
+        },
+        "memory": {
+          "totalBytes": {
+            "status": "valid",
+            "value": "34359738368",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "host:alex-workstation",
+            "reason": null
+          },
+          "usedBytes": {
+            "status": "valid",
+            "value": "12025908429",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "host:alex-workstation",
+            "reason": null
+          },
+          "availableBytes": {
+            "status": "valid",
+            "value": "22333829939",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "host:alex-workstation",
+            "reason": null
+          },
+          "cachedBytes": {
+            "status": "stale",
+            "value": "4294967296",
+            "sampledAtMs": 1761091198000,
+            "elapsedMs": 62000,
+            "scopeId": "host:alex-workstation",
+            "reason": "No newer cache observation"
+          },
+          "usedPct": {
+            "status": "valid",
+            "value": 35,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "host:alex-workstation",
+            "reason": null
+          }
+        },
+        "gpu": {
+          "utilizationPct": {
+            "status": "valid",
+            "value": 76,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "vramTotalBytes": {
+            "status": "valid",
+            "value": "12884901888",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "vramUsedBytes": {
+            "status": "valid",
+            "value": "2147483648",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "vramFreeBytes": {
+            "status": "valid",
+            "value": "9663676416",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "vramReservedBytes": {
+            "status": "valid",
+            "value": "1073741824",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "temperatureC": {
+            "status": "permission_denied",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": "NVML temperature query denied"
+          },
+          "powerW": {
+            "status": "valid",
+            "value": 88.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "fanPct": {
+            "status": "stale",
+            "value": 41,
+            "sampledAtMs": 1761091190000,
+            "elapsedMs": 54000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": "No newer fan observation"
+          },
+          "powerLimitPct": {
+            "status": "valid",
+            "value": 100,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          }
+        },
+        "disk": {
+          "totalBytes": {
+            "status": "valid",
+            "value": "1000204886016",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          },
+          "freeBytes": {
+            "status": "valid",
+            "value": "412316860416",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          },
+          "readBytesPerSecond": {
+            "status": "unavailable",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "volume:root",
+            "reason": "Exact volume counters not matched"
+          },
+          "writeBytesPerSecond": {
+            "status": "valid",
+            "value": 2097152,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          },
+          "writtenSessionBytes": {
+            "status": "valid",
+            "value": "32212254720",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          }
+        },
+        "network": {
+          "receiveBytesPerSecond": {
+            "status": "valid",
+            "value": 1250000.5,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "network:aggregate",
+            "reason": null
+          },
+          "sendBytesPerSecond": {
+            "status": "valid",
+            "value": 88000.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "network:aggregate",
+            "reason": null
+          },
+          "receivedSessionBytes": {
+            "status": "valid",
+            "value": "91268055040",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "network:aggregate",
+            "reason": null
+          },
+          "sentSessionBytes": {
+            "status": "valid",
+            "value": "7340032000",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "network:aggregate",
+            "reason": null
+          }
+        },
+        "power": {
+          "primaryKind": "battery_pct",
+          "primaryValue": {
+            "status": "valid",
+            "value": 67,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "watts": {
+            "status": "valid",
+            "value": 9.75,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "cpuPackageW": {
+            "status": "unavailable",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "cpu:package0",
+            "reason": "CPU package power provider not available"
+          },
+          "gpuBoardW": {
+            "status": "valid",
+            "value": 88.25,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "gpuTemperatureC": {
+            "status": "permission_denied",
+            "value": null,
+            "sampledAtMs": null,
+            "elapsedMs": null,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": "NVML temperature query denied"
+          },
+          "fanPct": {
+            "status": "stale",
+            "value": 41,
+            "sampledAtMs": 1761091190000,
+            "elapsedMs": 54000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": "No newer fan observation"
+          },
+          "powerLimitPct": {
+            "status": "valid",
+            "value": 100,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "reason": null
+          },
+          "batteryChargePct": {
+            "status": "valid",
+            "value": 67,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "batteryHealthPct": {
+            "status": "valid",
+            "value": 93.5,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "batteryRemainingSeconds": {
+            "status": "valid",
+            "value": 9000,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          },
+          "batteryState": {
+            "status": "valid",
+            "value": "discharging",
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "battery:BAT0",
+            "reason": null
+          }
+        }
+      },
+      "processSummaries": {
+        "memoryTop": [
+          {
+            "key": "5150:1761089100",
+            "pid": 5150,
+            "name": "cödé — 開発環境",
+            "residentBytes": {
+              "status": "valid",
+              "value": "1048576000",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 22,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "unavailable",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "GPU attribution unavailable"
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          },
+          {
+            "key": "4242:1761089000",
+            "pid": 4242,
+            "name": "firefox",
+            "residentBytes": {
+              "status": "valid",
+              "value": "734003200",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 12.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "valid",
+              "value": 3.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": null
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          }
+        ],
+        "cpuTop": [
+          {
+            "key": "5150:1761089100",
+            "pid": 5150,
+            "name": "cödé — 開発環境",
+            "residentBytes": {
+              "status": "valid",
+              "value": "1048576000",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 22,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "unavailable",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "GPU attribution unavailable"
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          },
+          {
+            "key": "4242:1761089000",
+            "pid": 4242,
+            "name": "firefox",
+            "residentBytes": {
+              "status": "valid",
+              "value": "734003200",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 12.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "valid",
+              "value": 3.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": null
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          }
+        ],
+        "gpuTop": [
+          {
+            "key": "4242:1761089000",
+            "pid": 4242,
+            "name": "firefox",
+            "residentBytes": {
+              "status": "valid",
+              "value": "734003200",
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "cpuPct": {
+              "status": "valid",
+              "value": 12.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "host:alex-workstation",
+              "reason": null
+            },
+            "gpuPct": {
+              "status": "valid",
+              "value": 3.5,
+              "sampledAtMs": 1761091199000,
+              "elapsedMs": 63000,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": null
+            },
+            "powerW": {
+              "status": "unsupported",
+              "value": null,
+              "sampledAtMs": null,
+              "elapsedMs": null,
+              "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+              "reason": "Per-process power is not exposed"
+            }
+          }
+        ],
+        "powerTop": [],
+        "supportedRankingMetrics": ["cpu", "gpu"],
+        "coverageNotes": ["GPU process attribution is unavailable for some processes"],
+        "displayedMemoryTotalBytes": "1782579200"
+      },
+      "memoryBreakdowns": {
+        "ram": {
+          "kind": "ram",
+          "scopeId": "host:alex-workstation",
+          "totalBytes": "34359738368",
+          "usedPct": 35,
+          "segments": [
+            {
+              "id": "in_use",
+              "label": "In Use",
+              "bytes": "12025908429",
+              "role": "used"
+            },
+            {
+              "id": "available",
+              "label": "Available",
+              "bytes": "22333829939",
+              "role": "available"
+            }
+          ],
+          "coverage": "complete",
+          "note": null
+        },
+        "vram": {
+          "kind": "vram",
+          "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+          "totalBytes": "12884901888",
+          "usedPct": 16.6666666667,
+          "segments": [
+            {
+              "id": "used",
+              "label": "Used",
+              "bytes": "2147483648",
+              "role": "used"
+            },
+            {
+              "id": "free",
+              "label": "Free",
+              "bytes": "9663676416",
+              "role": "free"
+            },
+            {
+              "id": "unclassified",
+              "label": "Unclassified",
+              "bytes": "1073741824",
+              "role": "unclassified"
+            }
+          ],
+          "coverage": "partial",
+          "note": "Some driver categories are not reported"
+        }
+      },
+      "history": {
+        "range": "1m",
+        "endpointElapsedMs": 63000,
+        "retainedFromElapsedMs": 0,
+        "charts": [
+          {
+            "seriesId": "cpuPct",
+            "unit": "pct",
+            "scopeId": "cpu:package0",
+            "scopeLabel": "CPU package",
+            "scaleMax": 100,
+            "columns": [
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 41,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 42,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 43,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 44,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 45,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 46,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 47,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 48,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 49,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "ramUsedPct",
+            "unit": "pct",
+            "scopeId": "host:alex-workstation",
+            "scopeLabel": "Alex-Workstation",
+            "scaleMax": 100,
+            "columns": [
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 34,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 35,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 36,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 37,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "gpuPct",
+            "unit": "pct",
+            "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+            "scopeLabel": "NVIDIA GeForce RTX 3060",
+            "scaleMax": 100,
+            "columns": [
+              {
+                "value": 60,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 61,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 62,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 63,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 64,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 65,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 66,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 67,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 68,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 69,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 70,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 71,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 72,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 73,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 74,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 75,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 77,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 78,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 79,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 60,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 61,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 62,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 63,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 64,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 65,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 66,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 67,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 68,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 69,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 70,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 71,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 72,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 74,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 75,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 76,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 77,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 78,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 79,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 60,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 61,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 62,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 63,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 64,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 65,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 66,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 67,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 68,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 69,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 71,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 72,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 73,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 74,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 75,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 76,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 77,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 78,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 79,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "diskBytesPerSecond",
+            "unit": "bytes_per_second",
+            "scopeId": "volume:root",
+            "scopeLabel": "/ (ext4)",
+            "scaleMax": 5000000,
+            "columns": [
+              {
+                "value": 0,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 50000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 150000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 200000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 250000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 300000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 350000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 400000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 450000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 500000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 550000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 600000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 650000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 700000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 750000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 850000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 900000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 950000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1000000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1050000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1150000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1200000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1250000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1300000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1350000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1400000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1450000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1500000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1550000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1600000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 1700000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1750000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1800000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1850000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1900000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1950000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2000000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2050000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2150000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2200000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2250000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2300000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2350000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2400000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2450000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 2550000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2600000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2650000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2700000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2750000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2800000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2850000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2900000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 2950000,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "networkBytesPerSecond",
+            "unit": "bytes_per_second",
+            "scopeId": "network:aggregate",
+            "scopeLabel": "Interface traffic",
+            "scaleMax": 2000000,
+            "columns": [
+              {
+                "value": 0,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 20000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 40000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 60000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 80000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 120000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 140000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 160000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 180000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 200000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 220000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 240000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 260000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 280000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 300000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 340000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 360000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 380000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 400000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 420000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 440000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 460000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 480000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 500000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 520000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 540000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 560000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 580000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 600000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 620000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 640000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 680000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 700000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 720000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 740000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 760000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 780000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 800000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 820000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 840000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 860000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 880000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 900000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 920000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 940000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 960000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 980000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 1020000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1040000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1060000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1080000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1100000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1120000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1140000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1160000,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 1180000,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          },
+          {
+            "seriesId": "powerW",
+            "unit": "watts",
+            "scopeId": "battery:BAT0",
+            "scopeLabel": "BAT0",
+            "scaleMax": 20,
+            "columns": [
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": null,
+                "sampleCount": 0,
+                "hasGap": true
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 9.5,
+                "sampleCount": 1,
+                "hasGap": false
+              },
+              {
+                "value": 10,
+                "sampleCount": 1,
+                "hasGap": false
+              }
+            ],
+            "partialHistory": false,
+            "status": "valid"
+          }
+        ],
+        "gpuSampleAveragePct": {
+          "status": "valid",
+          "value": 76,
+          "sampledAtMs": 1761091199000,
+          "elapsedMs": 63000,
+          "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+          "reason": null
+        },
+        "gpuSamplePeakPct": {
+          "status": "valid",
+          "value": 88.5,
+          "sampledAtMs": 1761091199000,
+          "elapsedMs": 63000,
+          "scopeId": "gpu:GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5",
+          "reason": null
+        }
+      },
+      "selection": {
+        "range": "1m",
+        "memoryView": "ram",
+        "rankingMetric": "cpu"
+      },
+      "preferences": {
+        "intervalMs": 1000,
+        "selectedGpuId": "GPU-8f4c2d1e-0a1b-4c3d-9e5f-60718293a4b5"
+      },
+      "notices": [
+        {
+          "code": "sensor_partial",
+          "message": "Disk read rate is unavailable for the system volume."
+        }
+      ]
+    }
+  },
+  "invalidCases": [
+    {
+      "target": "view",
+      "name": "percent_above_100",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "cpu", "totalPct", "value"],
+          "value": 100.5
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "negative_rate",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "disk", "readBytesPerSecond"],
+          "value": {
+            "status": "valid",
+            "value": -1,
+            "sampledAtMs": 1761091199000,
+            "elapsedMs": 63000,
+            "scopeId": "volume:root",
+            "reason": null
+          }
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "byte_string_leading_zero",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "memory", "totalBytes", "value"],
+          "value": "01"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "byte_string_overflow",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "gpu", "vramTotalBytes", "value"],
+          "value": "18446744073709551616"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "unsupported_with_value",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "cpu", "temperatureC", "value"],
+          "value": 50
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "valid_without_value",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "memory", "usedPct", "value"],
+          "value": null
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "valid_without_reason_null",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "cpu", "totalPct", "reason"],
+          "value": "should not be set"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "stale_without_timestamps",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "memory", "cachedBytes", "sampledAtMs"],
+          "value": null
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "unknown_range_enum",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["selection", "range"],
+          "value": "2m"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "unknown_environment_enum",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "host", "environment"],
+          "value": "windows"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "missing_group_field",
+      "ops": [
+        {
+          "op": "remove",
+          "path": ["sample", "memory", "availableBytes"]
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "unknown_view_field",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["inventedMetric"],
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "wrong_contract_version",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["contractVersion"],
+          "value": 2
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "non_uuid_session",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sessionId"],
+          "value": "not-a-uuid"
+        },
+        {
+          "op": "set",
+          "path": ["sample", "host", "sessionId"],
+          "value": "not-a-uuid"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "revision_not_json_safe",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["revision"],
+          "value": 9007199254740992
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "column_count_59",
+      "ops": [
+        {
+          "op": "remove",
+          "path": ["history", "charts", 0, "columns", 59]
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "chart_percent_above_100",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["history", "charts", 0, "columns", 0],
+          "value": {
+            "value": 120,
+            "sampleCount": 1,
+            "hasGap": false
+          }
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "empty_bucket_with_samples",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["history", "charts", 0, "columns", 0],
+          "value": {
+            "value": null,
+            "sampleCount": 2,
+            "hasGap": false
+          }
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "chart_scale_max_invalid",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["history", "charts", 0, "scaleMax"],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "too_many_notices",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["notices"],
+          "value": [
+            {
+              "code": "notice",
+              "message": "Notice 0"
+            },
+            {
+              "code": "notice",
+              "message": "Notice 1"
+            },
+            {
+              "code": "notice",
+              "message": "Notice 2"
+            },
+            {
+              "code": "notice",
+              "message": "Notice 3"
+            },
+            {
+              "code": "notice",
+              "message": "Notice 4"
+            },
+            {
+              "code": "notice",
+              "message": "Notice 5"
+            },
+            {
+              "code": "notice",
+              "message": "Notice 6"
+            },
+            {
+              "code": "notice",
+              "message": "Notice 7"
+            },
+            {
+              "code": "notice",
+              "message": "Notice 8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "memory_top_over_eight",
+      "ops": [
+        {
+          "op": "repeat",
+          "path": ["processSummaries", "memoryTop"],
+          "count": 9
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "breakdown_total_above_capacity",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["memoryBreakdowns", "ram", "segments", 0, "bytes"],
+          "value": "40000000000"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "unknown_scope_kind",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "scopes", 1, "kind"],
+          "value": "motherboard"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "too_many_scopes",
+      "ops": [
+        {
+          "op": "repeat",
+          "path": ["sample", "scopes"],
+          "count": 17
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "unknown_metric_id",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "capabilities", 0, "metricId"],
+          "value": "cpu.inventedMetric"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "invalid_battery_state",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sample", "power", "batteryState", "value"],
+          "value": "plugged"
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "endpoint_before_sample",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["endpointElapsedMs"],
+          "value": 10
+        }
+      ]
+    },
+    {
+      "target": "view",
+      "name": "message_too_long",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["notices", 0, "message"],
+          "value": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé"
+        }
+      ]
+    },
+    {
+      "target": "bootstrap",
+      "name": "selected_gpu_not_discovered",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["view", "preferences", "selectedGpuId"],
+          "value": "GPU-missing"
+        }
+      ]
+    },
+    {
+      "target": "delivery",
+      "name": "delivery_wrong_contract_version",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["contractVersion"],
+          "value": 2
+        }
+      ]
+    },
+    {
+      "target": "delivery",
+      "name": "delivery_non_uuid_subscription",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["subscriptionId"],
+          "value": "sub-1"
+        }
+      ]
+    },
+    {
+      "target": "delivery",
+      "name": "delivery_zero_sequence",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["deliverySequence"],
+          "value": 0
+        }
+      ]
+    },
+    {
+      "target": "delivery",
+      "name": "delivery_session_mismatch",
+      "ops": [
+        {
+          "op": "set",
+          "path": ["sessionId"],
+          "value": "11111111-2222-4333-8444-555555555555"
+        }
+      ]
+    }
+  ]
+}
