@@ -31,3 +31,8 @@ Thumbs.db
 __pycache__/
 *.pyc
 .venv/
+
+# Local planning and agent tooling.
+/.specify/
+/specs/
+/.agents/
