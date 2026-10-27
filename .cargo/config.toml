@@ -1,0 +1,13 @@
+# Local Linux builds only: use clang with the mold linker for fast linking of
+# the large debug binary and the integration test targets. The settings are
+# scoped to the Linux GNU target so Windows cross-compilation (cargo-xwin,
+# x86_64-pc-windows-msvc) is unaffected. CI overrides the linker and clears the
+# encoded rustflags because the ubuntu-22.04 runners do not install mold.
+#
+# This file lives at the repository root because Cargo discovers configuration
+# from the current working directory upward, not from --manifest-path. The root
+# location therefore covers `cargo ... --manifest-path src-tauri/Cargo.toml` from
+# the repository root as well as cargo invocations made inside src-tauri.
+[target.x86_64-unknown-linux-gnu]
+linker = "clang"
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]

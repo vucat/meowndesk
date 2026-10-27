@@ -6,6 +6,7 @@
 - **Zero-Allocation Hot Loop**: The 1Hz collector loop (`collector.rs`, `system.rs`, `nvml.rs`) must reuse pre-allocated buffers and persistent `sysinfo::System` instances (refreshing only targeted components, never `refresh_all()`). Avoid unnecessary `.clone()` on large structs.
 - **Non-Blocking IPC**: Never run synchronous OS/hardware queries (`sysinfo`, `nvml`, PDH, `/proc`) on the Tauri main/UI thread. Keep all hardware polling inside the dedicated background collector loop.
 - **Cross-Platform Safety (`#[cfg(target_os)]`)**: Keep OS-specific code (`windows/` and `linux/`) strictly behind shared provider traits in `providers/mod.rs` so both platforms compile against the exact same internal types and signatures without dead-code or unused-import warnings.
+- **Linux Build Tooling**: Install `mold` and `clang` (`sudo apt install -y mold clang`) for faster local Linux incremental builds and integration test linking. The repository-root `.cargo/config.toml` scopes `clang` + `-fuse-ld=mold` to `[target.x86_64-unknown-linux-gnu]` (Cargo reads config from the working directory upward, so this covers root `--manifest-path` commands and `src-tauri` runs); never move those flags to global `[build]` settings, or Windows cross-compilation (`cargo-xwin`) breaks. CI overrides the Linux linker with `cc` and clears `CARGO_ENCODED_RUSTFLAGS`, so no mold installation is required there.
 
 ## 2. Wire Contract & Data Integrity (`src-tauri/` <-> `src/`)
 - **Wire Serialization Rules**: All wire field names are `camelCase`; enum strings are `lowercase_snake_case`.

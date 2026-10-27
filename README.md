@@ -55,7 +55,14 @@ official stable Rust with edition 2024 support and rustc **1.90 or newer**.
 
   ```sh
   sudo apt-get install build-essential pkg-config libwebkit2gtk-4.1-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+  sudo apt install -y mold clang
   ```
+
+  `mold` and `clang` accelerate local Linux incremental builds and test linking:
+  the repository-root `.cargo/config.toml` scopes them to the
+  `x86_64-unknown-linux-gnu` target, so Windows builds and cross-compilation are
+  unaffected. GitHub Actions overrides the linker and clears the encoded
+  rustflags, so CI does not need `mold` installed.
 
 Distribution package names vary; see [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/).
 NVIDIA telemetry uses the installed NVML driver library; no CUDA toolkit or

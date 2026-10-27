@@ -34,3 +34,13 @@ libc = "=0.2.191"
 
 [dev-dependencies]
 tauri = { version = "=2.12.4", features = ["test"] }
+
+# Local development builds: line-tables-only debug info keeps the debug binary
+# and the integration test executables much smaller, while third-party
+# dependencies are pre-optimized so tests execute faster. The workspace crate
+# stays at opt-level = 0 for fast incremental rebuilds.
+[profile.dev]
+debug = 1
+
+[profile.dev.package."*"]
+opt-level = 2
