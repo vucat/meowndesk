@@ -1,0 +1,49 @@
+{
+  "cases": [
+    {
+      "name": "adjacent bytes above 2^53 retain descending order",
+      "accepted": true,
+      "entries": [
+        { "key": "z", "bytes": "9007199254740993" },
+        { "key": "a", "bytes": "9007199254740992" }
+      ],
+      "total": "18014398509481985"
+    },
+    {
+      "name": "adjacent bytes above 2^53 reject ascending order",
+      "accepted": false,
+      "entries": [
+        { "key": "a", "bytes": "9007199254740992" },
+        { "key": "z", "bytes": "9007199254740993" }
+      ],
+      "total": "18014398509481985"
+    },
+    {
+      "name": "equal large values use ascending process keys",
+      "accepted": true,
+      "entries": [
+        { "key": "a", "bytes": "9007199254740993" },
+        { "key": "z", "bytes": "9007199254740993" }
+      ],
+      "total": "18014398509481986"
+    },
+    {
+      "name": "equal large values reject reversed process keys",
+      "accepted": false,
+      "entries": [
+        { "key": "z", "bytes": "9007199254740993" },
+        { "key": "a", "bytes": "9007199254740993" }
+      ],
+      "total": "18014398509481986"
+    },
+    {
+      "name": "resident total overflow rejects wrapped zero",
+      "accepted": false,
+      "entries": [
+        { "key": "a", "bytes": "18446744073709551615" },
+        { "key": "z", "bytes": "1" }
+      ],
+      "total": "0"
+    }
+  ]
+}

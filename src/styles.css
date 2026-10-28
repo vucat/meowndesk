@@ -293,6 +293,38 @@ h1 {
 .frozen-endpoint.is-frozen {
   color: var(--power);
 }
+.display-mode-control {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px;
+  background: #1c1c1f;
+}
+.display-mode-option {
+  position: relative;
+}
+.display-mode-option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.display-mode-option span {
+  display: block;
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.display-mode-option input:checked + span {
+  background: #36363c;
+  box-shadow: 0 1px 4px #0003;
+  color: #ffffff;
+}
+.display-mode-option input:focus-visible + span {
+  outline: 2px solid var(--cpu);
+  outline-offset: -2px;
+}
 .status-notices:empty {
   display: none;
 }
@@ -352,26 +384,11 @@ h1 {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  font-size: 17px;
-  font-weight: 400;
 }
-.symbol-cpu::before {
-  content: '▣';
-}
-.symbol-memory::before {
-  content: '▥';
-}
-.symbol-gpu::before {
-  content: '▤';
-}
-.symbol-disk::before {
-  content: '▰';
-}
-.symbol-network::before {
-  content: '↕';
-}
-.symbol-power::before {
-  content: 'ϟ';
+.resource-symbol svg {
+  display: block;
+  width: 16px;
+  height: 16px;
 }
 .primary-label {
   color: var(--muted);
@@ -463,6 +480,143 @@ h1 {
 .stat-divider {
   color: var(--muted);
   font-size: 9px;
+}
+/* Compact display mode: header scope slot, Variant B micro-meter, borderless tabular stats. */
+.card-scope {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+  max-width: 52%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bento-card-compact .card-heading h2 {
+  white-space: nowrap;
+}
+.bento-card-compact {
+  min-height: 0;
+}
+.bento-card-compact .card-heading {
+  margin-bottom: 10px;
+}
+.bento-card-compact .primary-label {
+  margin-bottom: 2px;
+}
+.bento-card-compact .metric-primary {
+  font-size: 26px;
+}
+.micro-meter {
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: #242429;
+  overflow: hidden;
+}
+.micro-meter-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent, var(--cpu));
+}
+.bento-card-compact .secondary-stats {
+  margin-top: auto;
+  padding-top: 9px;
+  min-height: 0;
+  border-top: 1px solid #1e1e23;
+  gap: 12px;
+}
+.bento-card-compact .secondary-stat {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  border-top: 0;
+}
+.bento-card-compact .secondary-stat dt {
+  margin-bottom: 0;
+}
+.bento-card-compact .secondary-stat dd {
+  font-variant-numeric: tabular-nums;
+}
+/* Compact replacement for the three breakdown cards. */
+.top-processes-card {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+.top-processes-sort {
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+.top-processes-meta {
+  margin: 0 0 9px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #1e1e23;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.top-processes-total {
+  color: #dedee5;
+  font-variant-numeric: tabular-nums;
+}
+.top-processes-strip {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.top-process-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.top-process-top,
+.top-process-mid {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.top-process-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #dedee5;
+}
+.top-process-cpu {
+  color: #dedee5;
+  font-weight: 550;
+  white-space: nowrap;
+}
+.top-process-mid {
+  color: var(--muted);
+}
+.top-process-ram,
+.top-process-share {
+  white-space: nowrap;
+}
+.top-process-track {
+  display: block;
+  height: 4px;
+  margin-top: 2px;
+  border-radius: 999px;
+  background: #242429;
+  overflow: hidden;
+}
+.top-process-bar {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--cpu);
 }
 .memory-badge {
   font-size: 8px;
@@ -611,6 +765,23 @@ h1 {
 .updates-interrupted .process-summary {
   opacity: 0.8;
 }
+/* Keep per-value stale timestamps accessible without widening Compact stat columns. */
+.display-compact.updates-interrupted .secondary-stat .metric-stale .availability-note,
+.display-compact.updates-interrupted .capacity-total .metric-stale .availability-note,
+.display-compact.updates-interrupted .top-processes-card .metric-stale .availability-note {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.top-processes-stale {
+  color: #8e8e99;
+}
 .skip-link {
   position: fixed;
   z-index: 10;
@@ -635,6 +806,9 @@ h1 {
   .overview-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
+  }
+  .overview-grid.compact-mode {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .hardware-sidebar {
     padding: 24px 15px 16px;
@@ -1140,6 +1314,27 @@ h1 {
     grid-auto-rows: minmax(0, 1fr);
     gap: 14px;
   }
+  /* Compact mode keeps two card rows plus a content-sized Top Processes strip. */
+  .overview-grid.compact-mode {
+    grid-template-rows: repeat(2, minmax(0, 1fr)) auto;
+    grid-auto-rows: auto;
+  }
+  .bento-card-compact {
+    padding: 11px 13px 9px;
+  }
+  .bento-card-compact .card-heading {
+    margin-bottom: 7px;
+  }
+  .bento-card-compact .metric-primary {
+    font-size: 24px;
+  }
+  .bento-card-compact .secondary-stats {
+    margin-top: auto;
+    padding-top: 7px;
+  }
+  .top-processes-strip {
+    gap: 12px;
+  }
   .bento-card,
   .summary-card {
     min-height: 0;
@@ -1203,5 +1398,59 @@ h1 {
   }
   .overview-footer {
     margin-top: 10px;
+  }
+}
+
+/* Compact mode stays inside short viewports by tightening spacing instead of scrolling. */
+@media (max-height: 899px) {
+  .display-compact .overview-main {
+    padding: 16px 16px 10px;
+  }
+  .display-compact .overview-header {
+    margin-bottom: 10px;
+  }
+  .display-compact h1 {
+    font-size: 22px;
+  }
+  .display-compact .status-notice {
+    padding: 6px 12px;
+    margin-bottom: 8px;
+    font-size: 11px;
+  }
+  .display-compact .overview-grid.compact-mode {
+    gap: 12px;
+  }
+  .display-compact .bento-card-compact {
+    padding: 9px 12px 8px;
+  }
+  .display-compact .bento-card-compact .card-heading {
+    margin-bottom: 5px;
+    min-height: 15px;
+  }
+  .display-compact .bento-card-compact .metric-primary {
+    font-size: 21px;
+  }
+  .display-compact .micro-meter {
+    margin-top: 6px;
+  }
+  .display-compact .bento-card-compact .secondary-stats {
+    padding-top: 5px;
+    gap: 8px;
+  }
+  .display-compact .bento-card-compact .secondary-stat dd {
+    font-size: 10px;
+  }
+  .display-compact .top-processes-meta {
+    margin-bottom: 6px;
+    padding-bottom: 5px;
+  }
+  .display-compact .top-processes-strip {
+    gap: 12px;
+  }
+  .display-compact .top-processes-card .card-note {
+    margin-top: 4px;
+  }
+  .display-compact .overview-footer {
+    margin-top: 8px;
   }
 }

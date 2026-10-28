@@ -973,7 +973,7 @@ impl ProcessSummaries {
             observation.validate(scopes)?;
         }
         validate_process_order(&self.memory_top, "memory", |observation| {
-            valid_byte_value(&observation.resident_bytes).map(|value| value as f64)
+            valid_byte_value(&observation.resident_bytes)
         })?;
         validate_process_order(&self.cpu_top, "cpu", |observation| {
             observation.valid_metric(RankingMetric::Cpu)
@@ -998,11 +998,14 @@ impl ProcessSummaries {
         for note in &self.coverage_notes {
             validate_message("processSummaries.coverageNotes", note)?;
         }
-        let displayed: u64 = self
+        let Some(displayed) = self
             .memory_top
             .iter()
             .filter_map(|observation| valid_byte_value(&observation.resident_bytes))
-            .sum();
+            .try_fold(0u64, u64::checked_add)
+        else {
+            return fail("processSummaries.displayedMemoryTotalBytes exceeds the u64 domain");
+        };
         if displayed != self.displayed_memory_total_bytes.0 {
             return fail(
                 "processSummaries.displayedMemoryTotalBytes must equal the displayed resident sum",
@@ -1012,12 +1015,12 @@ impl ProcessSummaries {
     }
 }
 
-fn validate_process_order(
+fn validate_process_order<T: PartialOrd + Copy>(
     list: &[ProcessObservation],
     label: &str,
-    value: impl Fn(&ProcessObservation) -> Option<f64>,
+    value: impl Fn(&ProcessObservation) -> Option<T>,
 ) -> ModelResult<()> {
-    let mut previous: Option<(f64, &str)> = None;
+    let mut previous: Option<(T, &str)> = None;
     for observation in list {
         let Some(current) = value(observation) else {
             return fail(format!(

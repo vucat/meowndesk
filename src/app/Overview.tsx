@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import type { ViewSnapshot } from './view-store';
+import type { DisplayMode } from '../telemetry/display';
 import type { GpuDescriptor, HistoryRange, MemoryView, RankingMetric } from '../telemetry/types';
 import { BentoCard } from '../components/BentoCard';
 import { CoreTelemetryCards } from '../components/CoreTelemetryCards';
@@ -9,6 +10,7 @@ import { MemoryAppCard } from '../components/MemoryAppCard';
 import { MemoryTypeCard } from '../components/MemoryTypeCard';
 import { ResourceLoadCard } from '../components/ResourceLoadCard';
 import { StatusNotice } from '../components/StatusNotice';
+import { TopProcessesCard } from '../components/TopProcessesCard';
 import { Settings } from './Settings';
 export function Overview({
   snapshot,
@@ -34,15 +36,20 @@ export function Overview({
 }) {
   const { view, interrupted, error } = snapshot;
   const [settingsOpen, setSettingsOpen] = useState(false);
+  // Session-local presentation only: it never issues an IPC command or bumps the view revision.
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('charts');
   const settingsTrigger = useRef<HTMLButtonElement>(null);
   const sample = view?.sample;
   const gpu = sample?.scopes.find((scope) => scope.id === sample.gpu.utilizationPct.scopeId);
+  const compact = displayMode === 'compact';
   const closeSettings = useCallback(() => {
     setSettingsOpen(false);
     settingsTrigger.current?.focus();
   }, []);
   return (
-    <div className={`overview-shell ${interrupted ? 'updates-interrupted' : ''}`}>
+    <div
+      className={`overview-shell ${interrupted ? 'updates-interrupted' : ''}${compact ? ' display-compact' : ''}`}
+    >
       <a className="skip-link" href="#overview-main">
         Skip to Overview
       </a>
@@ -64,6 +71,8 @@ export function Overview({
             </div>
             <HistoryControls
               view={view}
+              displayMode={displayMode}
+              onDisplayMode={setDisplayMode}
               onRangeChange={onRangeChange}
               onPauseChange={onPauseChange}
             />
@@ -87,15 +96,21 @@ export function Overview({
           initializing={!sample}
           interrupted={interrupted}
         />
-        <div className="overview-grid">
-          <CoreTelemetryCards view={view} interrupted={interrupted} />
-          <BentoCard title="Memory by Type" resource="memory" className="summary-card">
-            <MemoryTypeCard view={view} onMemoryView={onMemoryView} />
-          </BentoCard>
-          <MemoryAppCard view={view} />
-          <BentoCard title="Resource Load" resource="cpu" className="summary-card">
-            <ResourceLoadCard view={view} onRankingMetric={onRankingMetric} />
-          </BentoCard>
+        <div className={`overview-grid${compact ? ' compact-mode' : ''}`}>
+          <CoreTelemetryCards view={view} interrupted={interrupted} displayMode={displayMode} />
+          {compact ? (
+            <TopProcessesCard view={view} interrupted={interrupted} />
+          ) : (
+            <>
+              <BentoCard title="Memory by Type" resource="memory" className="summary-card">
+                <MemoryTypeCard view={view} onMemoryView={onMemoryView} />
+              </BentoCard>
+              <MemoryAppCard view={view} />
+              <BentoCard title="Resource Load" resource="cpu" className="summary-card">
+                <ResourceLoadCard view={view} onRankingMetric={onRankingMetric} />
+              </BentoCard>
+            </>
+          )}
         </div>
         <footer className="overview-footer">
           <span>Local telemetry · Interface traffic and written bytes are session totals</span>

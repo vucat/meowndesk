@@ -52,6 +52,18 @@ it('labels guest scope, permits keyboard focus, and has no process navigation', 
   expect(screen.queryByRole('link', { name: /^Processes$/ })).not.toBeInTheDocument();
 });
 
+it('swaps the three breakdown cards for the unified Top Processes strip in Compact mode', async () => {
+  mount();
+  await screen.findByRole('radiogroup', { name: 'Display mode' });
+  await userEvent.click(screen.getByRole('radio', { name: 'Compact' }));
+  expect(screen.getByRole('region', { name: 'Top Processes' })).toBeVisible();
+  for (const name of ['Memory by Type', 'Memory by App', 'Resource Load'])
+    expect(screen.queryByRole('region', { name })).not.toBeInTheDocument();
+  for (const name of cards.slice(0, 6)) expect(screen.getByRole('region', { name })).toBeVisible();
+  await userEvent.click(screen.getByRole('radio', { name: 'Charts' }));
+  for (const name of cards) expect(screen.getByRole('region', { name })).toBeVisible();
+});
+
 it('shows initializing shells before a first sample and a visible bootstrap failure', async () => {
   const transport = new MockTransport('initializing');
   const { unmount } = render(

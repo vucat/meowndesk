@@ -505,14 +505,14 @@ function processObservation(
   return data as unknown as ProcessObservation;
 }
 
-function orderedBy(
+function orderedBy<T extends number | bigint>(
   value: unknown,
   path: string,
   context: ReadingContext,
-  metric: (observation: ProcessObservation) => number | null,
+  metric: (observation: ProcessObservation) => T | null,
 ): void {
   const list = array(value, path);
-  let previous: { value: number; key: string } | null = null;
+  let previous: { value: T; key: string } | null = null;
   list.forEach((entry, index) => {
     const observation = processObservation(entry, `${path}[${index}]`, context);
     const current = metric(observation);
@@ -548,7 +548,7 @@ function processSummaries(value: unknown, path: string, context: ReadingContext)
   }
   orderedBy(data.memoryTop, `${path}.memoryTop`, context, (observation) =>
     observation.residentBytes.status === 'valid' && observation.residentBytes.value !== null
-      ? Number(byteValue(observation.residentBytes.value, `${path}.memoryTop`))
+      ? byteValue(observation.residentBytes.value, `${path}.memoryTop`)
       : null,
   );
   orderedBy(data.cpuTop, `${path}.cpuTop`, context, (observation) =>

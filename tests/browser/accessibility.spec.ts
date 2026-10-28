@@ -21,6 +21,8 @@ test('keyboard reaches range, Pause and Settings; modal traps and restores focus
     'true',
   );
   await page.keyboard.press('Tab');
+  await expect(page.getByRole('radio', { name: 'Charts', exact: true })).toBeFocused();
+  await page.keyboard.press('Tab');
   const settings = page.getByRole('button', { name: 'Settings', exact: true });
   await expect(settings).toBeFocused();
   const outline = await settings.evaluate((el) => getComputedStyle(el).outlineStyle);
@@ -38,6 +40,7 @@ test('keyboard reaches range, Pause and Settings; modal traps and restores focus
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
   await expect(settings).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
   await page.keyboard.press('Shift+Tab');
   await page.keyboard.press('Space');
   await expect(page.getByTestId('history-status')).toHaveText('Live updates');

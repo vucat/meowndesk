@@ -1,9 +1,9 @@
 # Meowndesk
 
 Meowndesk is a local, read-only hardware monitor for Windows 10/11 and Linux,
-built with Tauri 2, Rust, React 19 and TypeScript. Version **0.1.0** brings live
-hardware readings, memory breakdowns and process rankings into one desktop
-Overview.
+built with Tauri 2, Rust, React 19 and TypeScript. Version **0.2.0** adds a Compact
+Overview with process CPU and resident-memory comparisons alongside the live
+hardware readings, memory breakdowns and history charts.
 
 ![Meowndesk Overview showing CPU, memory, GPU and VRAM, disk, network, power, and process resource usage](docs/images/overview.png)
 
@@ -13,6 +13,7 @@ Meowndesk Overview on Windows 11. Available readings depend on hardware and driv
 
 Download the latest installers from
 [GitHub Releases](https://github.com/vucat/meowndesk/releases/latest).
+See [the changelog](CHANGELOG.md) for changes and validation limits.
 
 | Platform            | Package     | Installation                                  |
 | ------------------- | ----------- | --------------------------------------------- |
@@ -32,6 +33,8 @@ and long-duration benchmarks remain pending; see [Validation status](#validation
 - Memory breakdowns by app and type, plus process resource rankings.
 - **1m, 5m, 15m and 1h** history ranges with 60 chart columns.
 - Pause/Resume for inspecting a frozen view while background collection continues.
+- **Charts** and **Compact** display modes: Compact swaps the dot-matrix charts for 4px
+  micro-meters and one Top Processes strip combining resident RAM and CPU per app.
 - Saved settings for the **1-, 2- or 5-second** collection interval and selected GPU.
 - Local assets and in-memory history; no account or outbound telemetry.
 
@@ -134,6 +137,13 @@ these native checks.
 
 ## GitHub builds and releases
 
+Repository CI and tag-triggered release publishing are delivery infrastructure,
+separate from the hardware Overview implementation and native acceptance workflow.
+Feature validation builds and checks packages locally; it does not create or push
+release tags. The existing publication path is retained for maintainers who
+explicitly push a matching version tag. A published installer does not establish
+native hardware, offline-installation or long-duration performance acceptance.
+
 The source repository is [vucat/meowndesk](https://github.com/vucat/meowndesk).
 The [Build desktop packages workflow](https://github.com/vucat/meowndesk/actions/workflows/build.yml)
 runs on pushes to `main`, pull requests targeting `main`, version tags, and manual
@@ -151,11 +161,11 @@ Missing or empty installers fail the workflow.
 release, update `package.json`, `package-lock.json`,
 `src-tauri/Cargo.toml`, `src-tauri/Cargo.lock` and `src-tauri/tauri.conf.json` to the
 same version, commit and push to `main`, then tag that commit. For example, after
-updating all versions to `0.1.1`:
+updating all versions to `0.2.1`:
 
 ```sh
-git tag -a v0.1.1 -m "Meowndesk v0.1.1"
-git push origin v0.1.1
+git tag -a v0.2.1 -m "Meowndesk v0.2.1"
+git push origin v0.2.1
 ```
 
 Use stable `vMAJOR.MINOR.PATCH` tags. Tag versions must match the package, Cargo

@@ -142,9 +142,11 @@ def slope_mb_hour(samples: list[dict]) -> float | None:
 def metadata(binary: Path | None) -> dict:
     def digest(path: Path) -> str | None:
         return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+    package = Path(__file__).resolve().parents[2] / 'package.json'
+    app_version = json.loads(package.read_text())['version']
     return {'startedAtUtc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
             'platform': platform.platform(), 'logicalCpuCount': os.cpu_count(),
-            'python': platform.python_version(), 'appVersion': '0.1.0',
+            'python': platform.python_version(), 'appVersion': app_version,
             'binarySha256': digest(binary) if binary else None,
             'lockfiles': {str(p): digest(p) for p in [Path('package-lock.json'), Path('src-tauri/Cargo.lock')]},
             'accounting': 'sum RSS/working set of root and descendants; retain observed reparented helpers by PID+creation identity; exclude unrelated trees',

@@ -189,6 +189,39 @@ fn deliberately_invalid_contract_cases_are_rejected() {
 }
 
 #[test]
+fn resident_memory_order_and_totals_preserve_exact_u64_values_without_panicking() {
+    let cases: Value =
+        serde_json::from_str(include_str!("../../tests/fixtures/memory-order-v1.json")).unwrap();
+    for case in cases["cases"].as_array().unwrap() {
+        let mut document = fixture()["bootstrap"]["view"].clone();
+        let source = document["processSummaries"]["memoryTop"][0].clone();
+        document["processSummaries"]["memoryTop"] = Value::Array(
+            case["entries"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|entry| {
+                    let mut process = source.clone();
+                    process["key"] = entry["key"].clone();
+                    process["residentBytes"]["value"] = entry["bytes"].clone();
+                    process
+                })
+                .collect(),
+        );
+        document["processSummaries"]["displayedMemoryTotalBytes"] = case["total"].clone();
+        let view: View = serde_json::from_value(document).unwrap();
+        let result = std::panic::catch_unwind(|| view.validate());
+        assert!(result.is_ok(), "validation panicked: {}", case["name"]);
+        assert_eq!(
+            result.unwrap().is_ok(),
+            case["accepted"].as_bool().unwrap(),
+            "{}",
+            case["name"]
+        );
+    }
+}
+
+#[test]
 fn decimal_byte_strings_accept_the_u64_domain_only() {
     let wire = json!({
         "status": "valid",

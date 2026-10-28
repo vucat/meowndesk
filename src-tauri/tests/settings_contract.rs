@@ -239,6 +239,114 @@ fn saved_device_fallback_records_a_notice_and_does_not_reuse_old_identity() {
 }
 
 #[test]
+fn startup_notices_survive_samples_before_the_first_subscription() {
+    use std::sync::{Arc, Mutex};
+    let directory = temp_path("startup-notices");
+    let service = TelemetryService::new();
+    service.initialize_preferences(
+        directory.join(preferences::FILE_NAME),
+        CollectionPreferences {
+            interval_ms: 1000,
+            selected_gpu_id: Some("GPU-missing".into()),
+        },
+        Some("Saved preferences were reset to defaults".into()),
+    );
+    service.reconcile_gpus(vec![candidate("GPU-A", "Adapter A")]);
+    for elapsed in [64_000, 65_000, 66_000] {
+        publish(&service, &service.capture_poll(), elapsed, "gpu:GPU-A");
+    }
+    let messages = Arc::new(Mutex::new(Vec::new()));
+    let received = messages.clone();
+    let (id, _) = service
+        .subscribe(Arc::new(move |delivery| {
+            received.lock().unwrap().push(delivery);
+            Ok(())
+        }))
+        .unwrap();
+    assert!(service.ack(&id, 0).unwrap());
+    let deliveries = messages.lock().unwrap();
+    for code in ["preferences_reset", "gpu_fallback"] {
+        assert_eq!(
+            deliveries[0]
+                .view
+                .notices
+                .iter()
+                .filter(|n| n.code == code)
+                .count(),
+            1,
+            "startup notice {code} must reach the first subscriber exactly once per view"
+        );
+    }
+    drop(deliveries);
+    let (_, persisted) = service.set_preferences(1000, Some("GPU-A".into())).unwrap();
+    assert!(persisted);
+    publish(&service, &service.capture_poll(), 67_000, "gpu:GPU-A");
+    assert!(!service.bootstrap().view.notices.iter().any(|n| {
+        matches!(
+            n.code.as_str(),
+            "preferences_reset" | "gpu_fallback" | "preferences_not_saved"
+        )
+    }));
+    cleanup(&directory);
+}
+
+#[test]
+fn save_failure_survives_publication_and_paused_controls_until_a_successful_save() {
+    let directory = temp_path("notice-recovery");
+    fs::create_dir_all(&directory).unwrap();
+    let blocker = directory.join("blocked");
+    fs::write(&blocker, b"file").unwrap();
+    let service = TelemetryService::new();
+    service.initialize_preferences(
+        blocker.join(preferences::FILE_NAME),
+        preferences::defaults(),
+        None,
+    );
+    publish(&service, &service.capture_poll(), 64_000, "gpu:unselected");
+    let (_, persisted) = service.set_preferences(2000, None).unwrap();
+    assert!(!persisted);
+    publish(&service, &service.capture_poll(), 66_000, "gpu:unselected");
+    let paused = service.set_paused(true).unwrap();
+    assert!(
+        paused
+            .notices
+            .iter()
+            .any(|n| n.code == "preferences_not_saved")
+    );
+    publish(&service, &service.capture_poll(), 68_000, "gpu:unselected");
+    let ranged = service
+        .set_view(ViewSelection {
+            range: Range::FifteenMinutes,
+            ..paused.selection
+        })
+        .unwrap();
+    assert_eq!(ranged.sample, paused.sample);
+    assert!(
+        ranged
+            .notices
+            .iter()
+            .any(|n| n.code == "preferences_not_saved")
+    );
+    fs::remove_file(&blocker).unwrap();
+    let (saved, persisted) = service.set_preferences(2000, None).unwrap();
+    assert!(persisted);
+    assert!(
+        !saved
+            .notices
+            .iter()
+            .any(|n| n.code == "preferences_not_saved")
+    );
+    let resumed = service.set_paused(false).unwrap();
+    assert!(
+        !resumed
+            .notices
+            .iter()
+            .any(|n| n.code == "preferences_not_saved")
+    );
+    cleanup(&directory);
+}
+
+#[test]
 fn a_late_poll_for_the_previous_gpu_cannot_repopulate_the_new_selection() {
     let directory = temp_path("race");
     let service = TelemetryService::new();

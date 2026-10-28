@@ -156,6 +156,19 @@
       "counterResetAfterTicks": null,
       "gpuChangeAfterTicks": null,
       "processChurnAfterTicks": null
+    },
+    {
+      "id": "process_memory_unavailable",
+      "description": "CPU observations remain valid while all process resident-memory observations are unavailable.",
+      "intervalMs": 1000,
+      "gpu": "available",
+      "network": "active",
+      "cpu": "valid",
+      "memory": "valid",
+      "silentAfterTicks": null,
+      "counterResetAfterTicks": null,
+      "gpuChangeAfterTicks": null,
+      "processChurnAfterTicks": null
     }
   ]
 }

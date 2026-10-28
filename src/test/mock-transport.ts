@@ -404,6 +404,17 @@ export class MockTransport {
         .reduce((sum, [, bytes]) => sum + BigInt(bytes), 0n)
         .toString();
     }
+    if (this.scenario.id === 'process_memory_unavailable') {
+      const summaries = this.view.processSummaries!;
+      summaries.memoryTop = [];
+      summaries.displayedMemoryTotalBytes = '0';
+      for (const entry of summaries.cpuTop) {
+        entry.residentBytes = unavailable(
+          entry.residentBytes.scopeId,
+          'Resident memory is not readable',
+        );
+      }
+    }
     if (this.scenario.id === 'initializing') {
       this.view.sample = null;
       this.view.history = null;

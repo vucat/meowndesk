@@ -44,6 +44,8 @@ struct Core {
     history: HistoryStore,
     scopes: ScopeRegistry,
     normalizer: Normalizer,
+    /// Configuration notices survive telemetry ticks until a successful preference save.
+    session_notices: Vec<Notice>,
     preferences_path: Option<PathBuf>,
     /// Saved choice stays private until background discovery establishes a catalog.
     initial_gpu_id: Option<String>,
@@ -81,6 +83,7 @@ impl TelemetryService {
                 history: HistoryStore::default(),
                 scopes: ScopeRegistry::new(),
                 normalizer: Normalizer::default(),
+                session_notices: Vec::with_capacity(3),
                 preferences_path: None,
                 initial_gpu_id: None,
                 gpu_epoch: 1,
@@ -134,12 +137,10 @@ impl TelemetryService {
         c.live.preferences = preferences.clone();
         c.cached.preferences = preferences;
         if let Some(message) = notice {
-            c.cached.notices.retain(|n| n.code != "preferences_reset");
-            c.cached.notices.push(Notice {
+            c.set_session_notice(Notice {
                 code: "preferences_reset".into(),
                 message: bounds::bounded_message(&message),
             });
-            c.cached.notices.truncate(bounds::MAX_NOTICES);
         }
     }
     /// Validates the complete request before mutating. A failed write keeps in-session choices.
@@ -203,19 +204,15 @@ impl TelemetryService {
             && crate::preferences::save(&path, &next).is_err()
         {
             persisted = false;
-            c.cached
-                .notices
-                .retain(|n| n.code != "preferences_not_saved");
-            c.cached.notices.push(Notice {
+            c.set_session_notice(Notice {
                 code: "preferences_not_saved".into(),
                 message: "Preferences could not be saved; in-session choices are still active"
                     .into(),
             });
-            c.cached.notices.truncate(bounds::MAX_NOTICES);
         } else {
-            c.cached
-                .notices
-                .retain(|n| n.code != "preferences_not_saved");
+            // Saving acknowledges repaired preferences and the currently selected adapter.
+            c.session_notices.clear();
+            c.refresh_session_notices();
         }
         let view = c.cached.clone();
         drop(c);
@@ -365,14 +362,12 @@ impl TelemetryService {
         let selected = chosen.as_ref().map(|g| g.id.clone());
         let changed = selected != c.live.preferences.selected_gpu_id;
         if saved.is_some() && saved != selected {
-            c.cached.notices.retain(|n| n.code != "gpu_fallback");
-            c.cached.notices.push(Notice {
+            c.set_session_notice(Notice {
                 code: "gpu_fallback".into(),
                 message:
                     "The previously selected GPU is unavailable; using the next available adapter"
                         .into(),
             });
-            c.cached.notices.truncate(bounds::MAX_NOTICES);
         }
         if changed {
             c.rebind_gpu(chosen);
@@ -500,10 +495,9 @@ impl TelemetryService {
             .frames()
             .front()
             .is_some_and(|first| elapsed.saturating_sub(first.elapsed_ms) >= stamp.interval_ms);
-        let mut notices: Vec<_> = baseline::evaluate(&sample, &processes, warmed)
-            .notice
-            .into_iter()
-            .collect();
+        let mut notices = Vec::with_capacity(bounds::MAX_NOTICES);
+        notices.extend(c.session_notices.iter().cloned());
+        notices.extend(baseline::evaluate(&sample, &processes, warmed).notice);
         if !warmed {
             notices.push(Notice {
                 code: "initializing".into(),
@@ -665,6 +659,7 @@ impl TelemetryService {
         c.history.clear();
         c.frozen = None;
         c.normalizer.reset();
+        c.session_notices.clear();
         c.gpus.clear();
         c.live = view::initializing(c.cached.session_id.clone());
         c.cached = c.live.clone();
@@ -732,6 +727,15 @@ pub fn not_ready() -> CommandError {
     )
 }
 impl Core {
+    fn set_session_notice(&mut self, notice: Notice) {
+        self.session_notices.retain(|old| old.code != notice.code);
+        self.session_notices.push(notice);
+        self.refresh_session_notices();
+    }
+    fn refresh_session_notices(&mut self) {
+        sync_session_notices(&mut self.cached, &self.session_notices);
+        sync_session_notices(&mut self.live, &self.session_notices);
+    }
     fn rebind_gpu(&mut self, chosen: Option<GpuDescriptor>) {
         let selected = chosen.as_ref().map(|g| g.id.clone());
         self.gpu_epoch += 1;
@@ -848,7 +852,9 @@ impl Core {
             }
             None => view::reselect(&state, &self.live, &self.history, preferences, visible),
         };
-        if let Some(next) = next {
+        if let Some(mut next) = next {
+            // Configuration follows current collection preferences; telemetry/baseline stays frozen.
+            sync_session_notices(&mut next, &self.session_notices);
             next.validate().map_err(|_| {
                 CommandError::new(
                     CommandErrorCode::Internal,
@@ -1020,6 +1026,16 @@ impl Core {
         }
         sample.scopes = self.scopes.all();
     }
+}
+fn sync_session_notices(view: &mut View, notices: &[Notice]) {
+    view.notices.retain(|notice| {
+        !matches!(
+            notice.code.as_str(),
+            "preferences_reset" | "gpu_fallback" | "preferences_not_saved"
+        )
+    });
+    view.notices.extend(notices.iter().cloned());
+    view.notices.truncate(bounds::MAX_NOTICES);
 }
 macro_rules! each_reading {
     ($s:ident, $apply:ident) => {

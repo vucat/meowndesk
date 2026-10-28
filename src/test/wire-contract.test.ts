@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import fixtureJson from '../../tests/fixtures/contract-v1.json';
+import memoryOrder from '../../tests/fixtures/memory-order-v1.json';
 import { parseByteString } from '../telemetry/format';
 import {
   LABEL_MAX_BYTES,
@@ -60,6 +61,19 @@ function applyOps(document: Record<string, unknown>, ops: PatchOp[]) {
 }
 
 describe('version-1 wire contract', () => {
+  it.each(memoryOrder.cases)('$name', (testCase) => {
+    const view = clone(validateView(fixture.bootstrap.view));
+    const summaries = view.processSummaries!;
+    const template = summaries.memoryTop[0]!;
+    summaries.memoryTop = testCase.entries.map((entry) => ({
+      ...clone(template),
+      key: entry.key,
+      residentBytes: { ...template.residentBytes, value: entry.bytes },
+    }));
+    summaries.displayedMemoryTotalBytes = testCase.total;
+    if (testCase.accepted) expect(() => validateView(view)).not.toThrow();
+    else expect(() => validateView(view)).toThrow();
+  });
   it('accepts the canonical bootstrap, view and delivery', () => {
     const bootstrap = validateBootstrap(fixture.bootstrap);
     expect(bootstrap.view.contractVersion).toBe(1);
